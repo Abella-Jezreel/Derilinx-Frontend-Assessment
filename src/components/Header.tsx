@@ -16,7 +16,12 @@ export default function Header() {
               alt="SurveyPulse Logo"
               className="h-8 w-8 mr-2 rounded-full"
             />
-            <h1 className="text-lg md:text-2xl font-bold">SurveyPulse</h1>
+            <h1
+              className="text-lg md:text-2xl font-bold relative overflow-hidden"
+              style={{ display: "inline-block" }}
+            >
+              SurveyPulse
+            </h1>
           </div>
         </Link>
 
