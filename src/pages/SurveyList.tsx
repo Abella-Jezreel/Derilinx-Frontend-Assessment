@@ -59,6 +59,16 @@ export default function SurveyList() {
 
   return (
     <div className="space-y-6">
+      <div className="text-center mb-6">
+        <h1 className="text-3xl font-bold text-gray-800">
+          Explore Our Surveys
+        </h1>
+        <p className="text-gray-500 mt-2">
+          Participate in surveys that help us improve services, gather feedback,
+          and understand your needs better.
+        </p>
+      </div>
+
       <div className="grid gap-4">
         {visibleData?.map((survey: Survey) => (
           <Link to={`/survey/${survey.id}`} key={survey.id}>
@@ -67,9 +77,7 @@ export default function SurveyList() {
                 <FaPoll className="text-blue-500" />
                 {survey.title}
               </h2>
-              <p className="text-sm text-gray-600 mt-1">
-                {survey.description}
-              </p>
+              <p className="text-sm text-gray-600 mt-1">{survey.description}</p>
             </div>
           </Link>
         ))}

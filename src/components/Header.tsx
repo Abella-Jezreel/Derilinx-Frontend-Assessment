@@ -4,7 +4,7 @@ import { FiGithub } from "react-icons/fi";
 export default function Header() {
   return (
     <header className="fixed top-0 w-full z-50 bg-white shadow-md border-b">
-      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 py-6 flex items-center justify-between">
         {/* Logo */}
         <Link
           to="/surveys"
@@ -16,12 +16,12 @@ export default function Header() {
               alt="SurveyPulse Logo"
               className="h-8 w-8 mr-2 rounded-full"
             />
-            <h1 className="text-lg font-bold">SurveyPulse</h1>
+            <h1 className="text-lg md:text-2xl font-bold">SurveyPulse</h1>
           </div>
         </Link>
 
         {/* Navigation */}
-        <nav className="flex gap-6 text-sm text-gray-700 font-medium">
+        <nav className="flex gap-6 text-sm md:text-lg text-gray-700 font-medium">
           <Link to="/surveys" className="hover:text-blue-600 transition">
             All Surveys
           </Link>

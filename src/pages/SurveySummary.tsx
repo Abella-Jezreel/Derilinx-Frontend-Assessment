@@ -1,5 +1,4 @@
 // --- FILE: src/pages/SurveySummary.tsx ---
-import React from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../api/axiosInstance";

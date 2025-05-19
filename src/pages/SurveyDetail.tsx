@@ -1,5 +1,5 @@
 // --- FILE: src/pages/SurveyDetail.tsx ---
-import { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../api/axiosInstance";
@@ -160,7 +160,7 @@ export default function SurveyDetail() {
                         [q.id]: e.target.value,
                       }))
                     }
-                    className="accent-blue-600"
+                    className="accent-blue-600 w-4 h-4"
                   />
                   {option}
                 </label>
@@ -185,7 +185,7 @@ export default function SurveyDetail() {
                     onChange={(e) =>
                       handleCheckboxChange(q.id, option, e.target.checked)
                     }
-                    className="accent-blue-600"
+                    className="accent-blue-600 w-4 h-4"
                   />
                   {option}
                 </label>
