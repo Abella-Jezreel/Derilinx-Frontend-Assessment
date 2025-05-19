@@ -1,7 +1,12 @@
+// --- FILE: src/pages/SurveyList.tsx ---
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSurveys } from "../hooks/useSurveys";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { FaPoll } from "react-icons/fa";
+
+const ITEMS_PER_BATCH = 10;
 
 type Survey = {
   id: string;
@@ -11,18 +16,34 @@ type Survey = {
 
 export default function SurveyList() {
   const { data, isLoading, isError } = useSurveys();
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_BATCH);
 
-  console.log("SurveyList data:", data);
+  useEffect(() => {
+    const handleScroll = () => {
+      const nearBottom =
+        window.innerHeight + window.scrollY >= document.body.offsetHeight - 100;
+      if (nearBottom && data && visibleCount < data.length) {
+        setVisibleCount((prev) => prev + ITEMS_PER_BATCH);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [data, visibleCount]);
+
+  const visibleData = data?.slice(0, visibleCount);
 
   if (isLoading) {
     return (
       <div className="grid gap-4">
-        {Array.from({ length: 6 }).map((_, i) => (
+        {Array.from({ length: ITEMS_PER_BATCH }).map((_, i) => (
           <div
             key={i}
-            className="p-4 border rounded shadow hover:bg-gray-50 transition"
+            className="p-4 bg-white border rounded-lg shadow hover:shadow-md transition"
           >
-            <h2 className="text-xl font-semibold">
+            <h2 className="text-lg font-semibold">
               <Skeleton width={150} />
             </h2>
             <p className="text-gray-600">
@@ -33,18 +54,32 @@ export default function SurveyList() {
       </div>
     );
   }
+
   if (isError) return <div>Error loading surveys.</div>;
 
   return (
-    <div className="grid gap-4">
-      {data.map((survey: Survey) => (
-        <Link to={`/survey/${survey.id}`} key={survey.id}>
-          <div className="p-4 border rounded shadow hover:bg-gray-50 transition">
-            <h2 className="text-xl font-semibold">{survey.title}</h2>
-            <p className="text-gray-600">{survey.description}</p>
-          </div>
-        </Link>
-      ))}
+    <div className="space-y-6">
+      <div className="grid gap-4">
+        {visibleData?.map((survey: Survey) => (
+          <Link to={`/survey/${survey.id}`} key={survey.id}>
+            <div className="p-4 bg-white border border-gray-200 rounded-lg shadow hover:shadow-md hover:bg-blue-50 hover:scale-[1.01] transition-all duration-200 cursor-pointer">
+              <h2 className="text-lg font-semibold flex items-center gap-2">
+                <FaPoll className="text-blue-500" />
+                {survey.title}
+              </h2>
+              <p className="text-sm text-gray-600 mt-1">
+                {survey.description}
+              </p>
+            </div>
+          </Link>
+        ))}
+      </div>
+
+      {visibleData && data && visibleData.length < data.length && (
+        <div className="text-center py-4">
+          <Skeleton width={100} height={20} />
+        </div>
+      )}
     </div>
   );
 }
