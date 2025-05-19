@@ -5,6 +5,7 @@ import Error from "../components/Error";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { FaPoll } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
 
 const ITEMS_PER_BATCH = 9;
 
@@ -70,17 +71,34 @@ export default function SurveyList() {
       </div>
 
       <div className="grid gap-4">
-        {visibleData?.map((survey: Survey) => (
-          <Link to={`/survey/${survey.id}`} key={survey.id}>
-            <div className="p-4 bg-white border border-gray-200 rounded-lg shadow hover:shadow-md hover:bg-blue-50 hover:scale-[1.01] transition-all duration-200 cursor-pointer">
-              <h2 className="text-lg font-semibold flex items-center gap-2">
-                <FaPoll className="text-blue-500" />
-                {survey.title}
-              </h2>
-              <p className="text-sm text-gray-600 mt-1">{survey.description}</p>
-            </div>
-          </Link>
-        ))}
+        <AnimatePresence>
+          {visibleData?.map((survey: Survey, idx: number) => (
+            <motion.div
+              key={survey.id}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 30 }}
+              transition={{
+                duration: 0.4,
+                delay: idx * 0.07,
+                type: "spring",
+                stiffness: 60,
+              }}
+            >
+              <Link to={`/survey/${survey.id}`}>
+                <div className="p-4 bg-white border border-gray-200 rounded-lg shadow hover:shadow-md hover:bg-blue-50 hover:scale-[1.01] transition-all duration-200 cursor-pointer">
+                  <h2 className="text-lg font-semibold flex items-center gap-2">
+                    <FaPoll className="text-blue-500" />
+                    {survey.title}
+                  </h2>
+                  <p className="text-sm text-gray-600 mt-1">
+                    {survey.description}
+                  </p>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
 
       {visibleData && data && visibleData.length < data.length && (

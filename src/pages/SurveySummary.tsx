@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 
 import "react-loading-skeleton/dist/skeleton.css";
+import { motion } from "framer-motion";
 
 interface Question {
   id: string;
@@ -37,7 +38,12 @@ export default function SurveySummary() {
 
   if (surveyQuery.isLoading) {
     return (
-      <div className="max-w-3xl mx-auto p-4 space-y-6">
+      <motion.div
+        className="max-w-3xl mx-auto p-4 space-y-6"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, type: "spring", stiffness: 60 }}
+      >
         <h1 className="text-2xl font-bold">
           <Skeleton width={200} />
         </h1>
@@ -60,7 +66,7 @@ export default function SurveySummary() {
             </ul>
           </div>
         ))}
-      </div>
+      </motion.div>
     );
   }
 
@@ -71,7 +77,13 @@ export default function SurveySummary() {
   console.log("SurveySummary data:", survey);
 
   return (
-    <div className="mx-auto p-6 bg-white shadow-lg rounded-lg space-y-6">
+    <motion.div
+      className="mx-auto p-6 bg-white shadow-lg rounded-lg space-y-6"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 30 }}
+      transition={{ duration: 0.5, type: "spring", stiffness: 60 }}
+    >
       <Link
         to="/surveys"
         className="inline-flex items-center text-blue-600 hover:text-blue-800 text-sm font-medium"
@@ -103,6 +115,6 @@ export default function SurveySummary() {
         <strong>Note:</strong> Summary data not available yet. Please check
         again later.
       </div>
-    </div>
+    </motion.div>
   );
 }
