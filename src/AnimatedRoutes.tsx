@@ -1,6 +1,7 @@
 import { Suspense, lazy } from "react";
 import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import RouteFallback from "./components/RouteFallback";
 
 const SurveyList = lazy(() => import("./pages/SurveyList"));
 const SurveyDetail = lazy(() => import("./pages/SurveyDetail"));
@@ -17,7 +18,7 @@ const AnimatedRoutes = () => {
           <Route
             path="/surveys"
             element={
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<RouteFallback />}>
                 <SurveyList />
               </Suspense>
             }
@@ -25,16 +26,16 @@ const AnimatedRoutes = () => {
           <Route
             path="/survey/:id"
             element={
-              <Suspense fallback={<div>Loading...</div>}>
-                  <SurveyDetail />
+              <Suspense fallback={<RouteFallback />}>
+                <SurveyDetail />
               </Suspense>
             }
           />
           <Route
             path="/summary/:id"
             element={
-              <Suspense fallback={<div>Loading...</div>}>
-                  <SurveySummary />
+              <Suspense fallback={<RouteFallback />}>
+                <SurveySummary />
               </Suspense>
             }
           />
