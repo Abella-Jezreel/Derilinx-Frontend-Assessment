@@ -17,15 +17,16 @@ This project was developed as part of the frontend technical assessment for **De
 
 ## ⚙️ Tech Stack
 
-| Tool              | Purpose                          |
-|-------------------|----------------------------------|
-| **React + TS**    | UI & static typing               |
-| **Vite**          | Fast build tool & dev server     |
-| **React Router**  | SPA routing                      |
-| **React Query**   | API data fetching & caching      |
-| **Axios**         | HTTP requests                    |
-| **Tailwind CSS**  | Utility-first styling (`v3.3.5`) |
-| **Framer Motion** | Page transitions & UI animation  |
+| Tool               | Role & Functionality                                      |
+|--------------------|-----------------------------------------------------------|
+| **React + TypeScript** | Component-based architecture with strong type safety  |
+| **Vite**            | Lightning-fast development server and build tool         |
+| **React Router**    | Declarative single-page app (SPA) routing                |
+| **React Query**     | Server state management with caching and background sync |
+| **Axios**           | Promise-based HTTP client for API communication          |
+| **Tailwind CSS**    | Utility-first styling for rapid UI development (`v3.3.5`)|
+| **Framer Motion**   | Smooth animations for UI transitions and interactions    |
+
 
 ---
 
