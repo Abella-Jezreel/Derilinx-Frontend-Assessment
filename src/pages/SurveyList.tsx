@@ -2,10 +2,10 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSurveys } from "../hooks/useSurveys";
 import { useInfiniteScroll } from "../hooks/useInfiniteScroll";
-import SurveyCard from "../components/SurveyCard";
-import Error from "../components/Error";
+import SurveyCard from "../components/cards/SurveyCard";
+import Error from "../components/feedback/Error";
 import Skeleton from "react-loading-skeleton";
-import SurveySkeletonList from "../components/SurveyListSkeleton";
+import SurveySkeletonList from "../components/skeleton/SurveyListSkeleton";
 
 type Survey = {
   id: string;

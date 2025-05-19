@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useSurvey } from "../hooks/useSurvey";
-import SummarySkeleton from "../components/SummarySkeleton";
-import BackToListLink from "../components/BackToListLink";
-import Error from "../components/Error";
+import SummarySkeleton from "../components/skeleton/SummarySkeleton";
+import BackToListLink from "../components/layout/BackToListLink";
+import Error from "../components/feedback/Error";
 
 export default function SurveySummary() {
   const { id } = useParams();

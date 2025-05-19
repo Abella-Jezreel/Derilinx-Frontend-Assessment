@@ -2,9 +2,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { useSurvey } from "../hooks/useSurvey";
-import QuestionBlock from "../components/QuestionBlock";
-import SurveySkeleton from "../components/SurveySkeleton";
-import Error from "../components/Error";
+import QuestionBlock from "../components/feedback/QuestionBlock";
+import SurveySkeleton from "../components/skeleton/SurveySkeleton";
+import Error from "../components/feedback/Error";
 import axiosInstance from "../api/axiosInstance";
 
 type Question = {

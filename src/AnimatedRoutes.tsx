@@ -1,7 +1,7 @@
 import { Suspense, lazy } from "react";
 import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import RouteFallback from "./components/RouteFallback";
+import RouteFallback from "./components/feedback/RouteFallback";
 
 const SurveyList = lazy(() => import("./pages/SurveyList"));
 const SurveyDetail = lazy(() => import("./pages/SurveyDetail"));
