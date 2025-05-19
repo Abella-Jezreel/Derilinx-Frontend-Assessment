@@ -1,38 +1,57 @@
 # 🧪 Survey App – Frontend Assessment
 
-This is a lightweight, responsive survey application built with **React**, **TypeScript**, and **Vite** as part of a frontend technical assessment for Derilinx.
-
-The app allows users to:
-- View a list of surveys
-- Answer surveys dynamically (single or multiple choice)
-- Submit responses
-- View a clear summary of submitted answers
+A modern, responsive survey application built with **React**, **TypeScript**, and **Vite**.  
+This project was developed as part of the frontend technical assessment for **Derilinx**.
 
 ---
 
-## 🚀 Tech Stack
+## 🎯 Features
 
-- **React + TypeScript** – UI and type safety
-- **Vite** – Fast build tool and dev server
-- **React Router** – Client-side routing
-- **React Query** – Data fetching and caching
-- **Axios** – API calls
-- **Tailwind CSS** – Utility-first styling (v3.3.5 for stability)
-<!-- OR -->
-<!-- - **MUI (Material UI)** – Component-based styling -->
+- ✅ View a dynamic list of available surveys
+- ✅ Answer survey questions (single & multiple choice)
+- ✅ Submit survey responses via API
+- ✅ View a user-friendly summary of all submitted answers
+- ✅ Fully responsive, with smooth animations and error handling
 
 ---
 
-## 📂 Project Structure
+## ⚙️ Tech Stack
+
+| Tool              | Purpose                          |
+|-------------------|----------------------------------|
+| **React + TS**    | UI & static typing               |
+| **Vite**          | Fast build tool & dev server     |
+| **React Router**  | SPA routing                      |
+| **React Query**   | API data fetching & caching      |
+| **Axios**         | HTTP requests                    |
+| **Tailwind CSS**  | Utility-first styling (`v3.3.5`) |
+| **Framer Motion** | Page transitions & UI animation  |
+
+---
+
+## 📁 Project Structure
 
 src/
-│
-├── api/            # Handles API requests using Axios
-├── components/     # Shared, reusable UI components (e.g. Card, Loader, QuestionForm)
-├── context/        # React Contexts for shared state (e.g. survey answers)
-├── hooks/          # Custom React Query hooks and other reusable hooks
-├── pages/          # Top-level route components (Survey List, Survey Detail, Summary)
-├── types/          # TypeScript interfaces and type definitions
-│
-├── AnimatedRoutes.tsx         # Main app with all route definitions
-└── main.tsx        # Application entry point with React Query & Router providers
+├── api/ # Axios instances and API methods
+├── components/ # Reusable UI components (Card, Skeleton, Modal, etc.)
+├── context/ # React Context (if applicable)
+├── hooks/ # Custom hooks (e.g. useSurvey, useSurveys)
+├── pages/ # Route components: SurveyList, SurveyDetail, SurveySummary
+├── types/ # TypeScript type definitions
+├── AnimatedRoutes.tsx # Handles route transitions with Framer Motion
+└── main.tsx # Entry point: Providers and app bootstrap
+
+
+---
+
+## 📦 Getting Started
+
+```bash
+# 1. Install dependencies
+npm install
+
+# 2. Run the dev server
+npm run dev
+
+# 3. Visit
+http://localhost:5173
