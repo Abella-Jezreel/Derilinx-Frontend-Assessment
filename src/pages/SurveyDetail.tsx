@@ -1,8 +1,9 @@
 // --- FILE: src/pages/SurveyDetail.tsx ---
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../api/axiosInstance";
+import Error from "../components/Error";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -109,20 +110,45 @@ export default function SurveyDetail() {
         ))}
       </div>
     );
-  if (isError || !data) return <div>Error loading survey.</div>;
+  if (isError || !data) return <Error />;
 
   return (
-    <div className="max-w-3xl mx-auto p-4 space-y-6">
-      <h1 className="text-2xl font-bold">{data.title}</h1>
-      <p className="text-gray-600">{data.description}</p>
+    <div className="mx-auto p-6 bg-white shadow-lg rounded-lg space-y-6">
+      <button
+        onClick={() => navigate("/surveys")}
+        className="text-blue-600 hover:underline flex items-center gap-1 text-sm"
+      >
+        <svg
+          className="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+        Back to Survey List
+      </button>
+
+      <div>
+        <h1 className="text-2xl font-bold text-gray-800">{data.title}</h1>
+        <p className="text-gray-500 mt-1">{data.description}</p>
+      </div>
 
       {data.questions.map((q) => (
-        <div key={q.id} className="space-y-2">
-          <h2 className="font-semibold">{q.question}</h2>
+        <div key={q.id} className="space-y-2 border-t pt-4">
+          <h2 className="font-semibold text-lg text-gray-700">{q.question}</h2>
           {q.type === "single_choice" && (
             <div className="space-y-1">
               {q.options.map((option) => (
-                <label key={option} className="block">
+                <label
+                  key={option}
+                  className="flex items-center gap-2 cursor-pointer text-gray-600"
+                >
                   <input
                     type="radio"
                     name={q.id}
@@ -131,10 +157,10 @@ export default function SurveyDetail() {
                     onChange={(e) =>
                       setAnswers((prev) => ({
                         ...prev,
-                        [q.id]: e.target.value, // this will exactly match the string
+                        [q.id]: e.target.value,
                       }))
                     }
-                    className="mr-2"
+                    className="accent-blue-600"
                   />
                   {option}
                 </label>
@@ -145,7 +171,10 @@ export default function SurveyDetail() {
           {q.type === "multiple_choice" && (
             <div className="space-y-1">
               {q.options.map((option) => (
-                <label key={option} className="block">
+                <label
+                  key={option}
+                  className="flex items-center gap-2 cursor-pointer text-gray-600"
+                >
                   <input
                     type="checkbox"
                     value={option}
@@ -156,7 +185,7 @@ export default function SurveyDetail() {
                     onChange={(e) =>
                       handleCheckboxChange(q.id, option, e.target.checked)
                     }
-                    className="mr-2"
+                    className="accent-blue-600"
                   />
                   {option}
                 </label>
@@ -168,9 +197,9 @@ export default function SurveyDetail() {
 
       <button
         onClick={handleSubmit}
-        className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+        className="w-full mt-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition font-semibold"
       >
-        Submit
+        Submit Survey
       </button>
     </div>
   );

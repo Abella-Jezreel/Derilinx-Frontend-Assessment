@@ -3,7 +3,10 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../api/axiosInstance";
+import Error from "../components/Error";
+import { Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
+
 import "react-loading-skeleton/dist/skeleton.css";
 
 interface Question {
@@ -61,21 +64,46 @@ export default function SurveySummary() {
       </div>
     );
   }
-  
-  if (surveyQuery.isError || !surveyQuery.data)
-    return <div>Error loading summary.</div>;
+
+  if (surveyQuery.isError || !surveyQuery.data) return <Error />;
 
   const survey = surveyQuery.data;
 
   console.log("SurveySummary data:", survey);
 
   return (
-    <div className="max-w-3xl mx-auto p-4 space-y-6">
-      <h1 className="text-2xl font-bold">{survey.title} – Summary</h1>
-      <p className="text-gray-600">{survey.description}</p>
-      <p className="italic text-sm text-gray-500">
-        Summary data not available yet.
-      </p>
+    <div className="mx-auto p-6 bg-white shadow-lg rounded-lg space-y-6">
+      <Link
+        to="/surveys"
+        className="inline-flex items-center text-blue-600 hover:text-blue-800 text-sm font-medium"
+      >
+        <svg
+          className="w-4 h-4 mr-1"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+        Back to Survey List
+      </Link>
+
+      <div>
+        <h1 className="text-2xl font-bold text-gray-800">
+          {survey.title} – Summary
+        </h1>
+        <p className="text-gray-500 mt-1">{survey.description}</p>
+      </div>
+
+      <div className="rounded-md bg-yellow-50 border border-yellow-300 text-yellow-800 p-4 text-sm">
+        <strong>Note:</strong> Summary data not available yet. Please check
+        again later.
+      </div>
     </div>
   );
 }

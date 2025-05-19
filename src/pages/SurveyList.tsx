@@ -1,12 +1,12 @@
-// --- FILE: src/pages/SurveyList.tsx ---
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSurveys } from "../hooks/useSurveys";
+import Error from "../components/Error";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { FaPoll } from "react-icons/fa";
 
-const ITEMS_PER_BATCH = 10;
+const ITEMS_PER_BATCH = 9;
 
 type Survey = {
   id: string;
@@ -55,7 +55,7 @@ export default function SurveyList() {
     );
   }
 
-  if (isError) return <div>Error loading surveys.</div>;
+  if (isError) return <Error />;
 
   return (
     <div className="space-y-6">

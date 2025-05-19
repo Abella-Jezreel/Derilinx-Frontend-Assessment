@@ -12,7 +12,8 @@ const AnimatedRoutes = () => {
 
   return (
     <AnimatePresence mode="wait">
-      <div className="max-w-3xl mx-auto px-4 py-6">
+      
+      <div className="max-w-4xl mx-auto px-4 py-6">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Navigate to="/surveys" replace />} />
           <Route
