@@ -19,7 +19,7 @@ export default function SurveySummary() {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 30 }}
-      transition={{ duration: 0.5, type: "spring", stiffness: 60 }}
+      transition={{ type: "tween", duration: 0.35, ease: "easeOut" }}
     >
       <BackToListLink />
       <h1 className="text-2xl font-bold">{data.title} – Summary</h1>

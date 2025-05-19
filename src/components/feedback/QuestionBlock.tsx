@@ -21,31 +21,25 @@ export default function QuestionBlock({
   answers,
   setAnswers,
   handleCheckboxChange,
-  index,
 }: QuestionProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 30 }}
-      transition={{
-        duration: 0.4,
-        delay: index * 0.08,
-        type: "spring",
-        stiffness: 60,
-      }}
+      transition={{ type: "tween", duration: 0.35, ease: "easeOut" }}
       className="space-y-2 border-t pt-4"
     >
       <h2 className="font-semibold text-lg text-gray-700">{q.question}</h2>
 
       {(q.type === "single_choice" || q.type === "multiple_choice") && (
         <div className="space-y-1">
-          {q.options.map((option, oidx) => (
+          {q.options.map((option) => (
             <motion.label
               key={option}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3, delay: 0.1 + oidx * 0.05 }}
+              transition={{ type: "tween", duration: 0.35, ease: "easeOut" }}
               className="flex items-center gap-2 cursor-pointer text-gray-600"
             >
               <input
@@ -70,6 +64,11 @@ export default function QuestionBlock({
               {option}
             </motion.label>
           ))}
+          <p className="text-sm text-gray-500 italic py-2">
+            {q.type === "single_choice"
+              ? "Select one option"
+              : "You may select multiple options"}
+          </p>
         </div>
       )}
     </motion.div>

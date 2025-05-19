@@ -47,18 +47,13 @@ export default function SurveyList() {
 
       <div className="grid gap-4">
         <AnimatePresence>
-          {visibleData?.map((survey, idx) => (
+          {visibleData?.map((survey) => (
             <motion.div
               key={survey.id}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 30 }}
-              transition={{
-                duration: 0.4,
-                delay: idx * 0.07,
-                type: "spring",
-                stiffness: 60,
-              }}
+              transition={{ type: "tween", duration: 0.35, ease: "easeOut" }}
             >
               <SurveyCard {...survey} />
             </motion.div>
