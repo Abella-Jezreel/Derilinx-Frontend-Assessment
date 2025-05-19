@@ -57,9 +57,7 @@ export default function SurveyDetail() {
   const handleSubmit = async () => {
     const payload = {
       responses: Object.entries(answers)
-        .filter(([val]) =>
-          Array.isArray(val) ? val.length > 0 : val !== ""
-        )
+        .filter(([val]) => (Array.isArray(val) ? val.length > 0 : val !== ""))
         .map(([question_id, answer]) => ({
           question_id,
           selected_option: Array.isArray(answer) ? answer.join(", ") : answer,
@@ -107,7 +105,7 @@ export default function SurveyDetail() {
 
       <button
         onClick={handleSubmit}
-        className="w-full mt-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition font-semibold"
+        className="w-full py-3 px-6 text-white font-semibold rounded-lg bg-gradient-to-r from-blue-600 to-blue-500 shadow-md hover:shadow-xl hover:from-blue-700 hover:to-blue-600 transition-all duration-300 transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-300"
       >
         Submit Survey
       </button>

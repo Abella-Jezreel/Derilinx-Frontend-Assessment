@@ -10,7 +10,7 @@ interface Props {
 export default function SurveyCard({ id, title, description }: Props) {
   return (
     <Link to={`/survey/${id}`}>
-      <div className="p-4 bg-white border border-gray-200 rounded-lg shadow hover:shadow-md hover:bg-blue-50 hover:scale-[1.01] transition-all duration-200 cursor-pointer">
+      <div className="p-4 bg-white border border-gray-200 rounded-lg shadow transition-all duration-200 ease-in-out hover:shadow-md hover:scale-[1.01] hover:border-blue-300 hover:bg-blue-50 cursor-pointer">
         <h2 className="text-lg font-semibold flex items-center gap-2">
           <FaPoll className="text-blue-500" />
           {title}
