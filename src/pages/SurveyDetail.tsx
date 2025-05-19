@@ -44,10 +44,6 @@ export default function SurveyDetail() {
     }
   }, [data]);
 
-  const handleChange = (questionId: string, value: string | string[]) => {
-    setAnswers((prev) => ({ ...prev, [questionId]: value }));
-  };
-
   const handleCheckboxChange = (
     questionId: string,
     option: string,
@@ -61,14 +57,9 @@ export default function SurveyDetail() {
   };
 
   const handleSubmit = async () => {
-    const filtered = Object.entries(answers).filter(([_, value]) => {
-      if (Array.isArray(value)) return value.length > 0;
-      return value !== "";
-    });
-
     const payload = {
       responses: Object.entries(answers)
-        .filter(([_, value]) =>
+        .filter(([value]) =>
           Array.isArray(value) ? value.length > 0 : value !== ""
         )
         .map(([question_id, answer]) => ({

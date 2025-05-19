@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 import { useSurveys } from "../hooks/useSurveys";
 
+type Survey = {
+  id: string;
+  title: string;
+  description: string;
+};
+
 export default function SurveyList() {
   const { data, isLoading, isError } = useSurveys();
 
@@ -11,7 +17,7 @@ export default function SurveyList() {
 
   return (
     <div className="grid gap-4">
-      {data.map((survey) => (
+      {data.map((survey: Survey) => (
         <Link to={`/survey/${survey.id}`} key={survey.id}>
           <div className="p-4 border rounded shadow hover:bg-gray-50 transition">
             <h2 className="text-xl font-semibold">{survey.title}</h2>
