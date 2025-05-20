@@ -27,7 +27,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, title, message, onClose }) => {
             initial={{ opacity: 0, scale: 0.9, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 30 }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
           >
             <div className="bg-white rounded-lg shadow-lg max-w-sm w-full p-6 space-y-4">
               {title && (

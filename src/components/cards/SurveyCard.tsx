@@ -19,7 +19,7 @@ export default function SurveyCard({ id, title, description, index }: Props) {
         transition={{
           type: "tween",
           ease: "easeOut",
-          duration: 0.4,
+          duration: 0.8,
           delay: index ? index * 0.05 : 0,
         }}
         className="p-4 bg-white border border-gray-200 rounded-lg shadow-md hover:border-blue-400 hover:bg-blue-50 cursor-pointer"

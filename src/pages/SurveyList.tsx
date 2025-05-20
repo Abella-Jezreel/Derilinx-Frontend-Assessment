@@ -48,9 +48,7 @@ export default function SurveyList() {
       <div className="grid gap-4">
         <AnimatePresence>
           {visibleData?.map((survey) => (
-            <motion.div
-
-            >
+            <motion.div key={survey.id} layout>
               <SurveyCard {...survey} />
             </motion.div>
           ))}

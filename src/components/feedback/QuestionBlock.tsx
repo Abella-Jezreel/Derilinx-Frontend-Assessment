@@ -27,7 +27,7 @@ export default function QuestionBlock({
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 30 }}
-      transition={{ type: "tween", duration: 0.35, ease: "easeOut" }}
+      transition={{ type: "tween", duration: 0.7, ease: "easeOut" }}
       className="space-y-2 border-t pt-4"
     >
       <h2 className="font-semibold text-lg text-gray-700">{q.question}</h2>
@@ -39,7 +39,7 @@ export default function QuestionBlock({
               key={option}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ type: "tween", duration: 0.35, ease: "easeOut" }}
+              transition={{ type: "tween", duration: 0.7, ease: "easeOut" }}
               className="flex items-center gap-2 cursor-pointer text-gray-600"
             >
               <input

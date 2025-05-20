@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { useSurvey } from "../hooks/useSurvey";
+import { toast } from "react-toastify";
 import QuestionBlock from "../components/feedback/QuestionBlock";
 import SurveySkeleton from "../components/skeleton/SurveySkeleton";
 import Error from "../components/feedback/Error";
@@ -75,10 +76,11 @@ export default function SurveyDetail() {
 
     try {
       await axiosInstance.post(`/surveys/${surveyId}/responses`, payload);
+      toast.success("Survey submitted successfully!");
       navigate(`/summary/${surveyId}`);
     } catch (error) {
       console.error("Error submitting survey:", error);
-      alert("Failed to submit. Try again.");
+      toast.error("Failed to submit. Try again.");
     }
   };
 
